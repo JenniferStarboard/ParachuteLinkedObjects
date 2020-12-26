@@ -192,7 +192,13 @@ function SelectSetUp(pnt) {
 	};
 	
 	let holders = Array.from(document.getElementsByTagName('input'));
-	let names = holders.filter(function(el){return (el.type==='text')&&(el.value!=="")});
+	let names = holders.filter(
+		function (el) {
+			let regex = /^\s+$/;
+
+			return (el.type === 'text')&&(el.value !== "")&&(regex.test(el.value) !== true);
+		});
+
 	dataBox.labels = [];
 	
 	//Reset values every time someone submits labels.
